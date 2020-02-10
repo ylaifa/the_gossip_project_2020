@@ -16,9 +16,9 @@ Gossip.destroy_all
 end
 
 10.times do
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.paragraph, age: Faker::Number.between(from: 18, to: 120), email: Faker::Internet.email, city_id: Faker::Number.between(from: City.last.id - 10, to: City.last.id))
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.paragraph, age: Faker::Number.between(from: 18, to: 120), email: Faker::Internet.email, city: City.all.sample)
 end
 
 20.times do
-  Gossip.create(user: User.all.sample, title: Faker::TvShows::SouthPark.character, content: Faker::TvShows::SouthPark.quote)
+  Gossip.create(title: Faker::TvShows::SouthPark.character, content: Faker::TvShows::SouthPark.quote, user: User.all.sample)
 end
