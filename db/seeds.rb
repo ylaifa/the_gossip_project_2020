@@ -41,3 +41,7 @@ end
     private_message = PrivateMessage.update(recipient: User.all.sample)
   end
 end
+
+20.times do
+  Comment.create(content: Faker::ChuckNorris.fact, user: User.all.sample, gossip: Gossip.all.sample)
+end
