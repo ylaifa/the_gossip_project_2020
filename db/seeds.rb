@@ -45,3 +45,7 @@ end
 20.times do
   Comment.create(content: Faker::ChuckNorris.fact, user: User.all.sample, gossip: Gossip.all.sample)
 end
+
+20.times do
+Like.create(likable: [true, false].sample ? Gossip.all.sample : Comment.all.sample, user: User.all.sample)
+end
