@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-City.destroy_all
 User.destroy_all
+City.destroy_all
 Gossip.destroy_all
 Tag.destroy_all
 GossipTag.destroy_all
@@ -32,5 +32,12 @@ end
 Gossip.all.each do |gossip|
   rand(1..4).times do
     GossipTag.create(tag: Tag.all.sample, gossip: gossip)
+  end
+end
+
+5.times do
+  private_message = PrivateMessage.create(sender: User.all.sample, recipient: User.all.sample,content: Faker::Quote.most_interesting_man_in_the_world)
+  rand(1..6).times do
+    private_message = PrivateMessage.update(recipient: User.all.sample)
   end
 end
