@@ -10,6 +10,8 @@ require 'faker'
 City.destroy_all
 User.destroy_all
 Gossip.destroy_all
+Tag.destroy_all
+GossipTag.destroy_all
 
 10.times do
   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
@@ -21,4 +23,14 @@ end
 
 20.times do
   Gossip.create(title: Faker::TvShows::SouthPark.character, content: Faker::TvShows::SouthPark.quote, user: User.all.sample)
+end
+
+10.times do
+  Tag.create(title: Faker::Book.genre)
+end
+
+Gossip.all.each do |gossip|
+  rand(1..4).times do
+    GossipTag.create(tag: Tag.all.sample, gossip: gossip)
+  end
 end
