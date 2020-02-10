@@ -9,6 +9,7 @@ require 'faker'
 
 City.destroy_all
 User.destroy_all
+Gossip.destroy_all
 
 10.times do
   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
@@ -16,4 +17,8 @@ end
 
 10.times do
   User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.paragraph, age: Faker::Number.between(from: 18, to: 120), email: Faker::Internet.email, city_id: Faker::Number.between(from: City.last.id - 10, to: City.last.id))
+end
+
+20.times do
+  Gossip.create(user: User.all.sample, title: Faker::TvShows::SouthPark.character, content: Faker::TvShows::SouthPark.quote)
 end
