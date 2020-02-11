@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/show'
   root 'gossips#index'
 
   get 'gossips/:id', to: 'gossips#show', as: 'gossip'
