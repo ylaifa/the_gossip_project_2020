@@ -1,6 +1,6 @@
 class GossipsController < ApplicationController
   def index
-    @gossips = Gossip.all
+    @gossips = Gossip.includes(:user).all
   end
 
   def show
