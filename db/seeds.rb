@@ -12,6 +12,9 @@ City.destroy_all
 Gossip.destroy_all
 Tag.destroy_all
 GossipTag.destroy_all
+Comment.destroy_all
+SubComment.destroy_all
+Like.destroy_all
 
 10.times do
   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
@@ -47,5 +50,9 @@ end
 end
 
 20.times do
-Like.create(likable: [true, false].sample ? Gossip.all.sample : Comment.all.sample, user: User.all.sample)
+  Like.create(likable: [true, false].sample ? Gossip.all.sample : Comment.all.sample, user: User.all.sample)
+end
+
+30.times do
+  SubComment.create(content: Faker::ChuckNorris.fact, user: User.all.sample, comment: Comment.all.sample)
 end
