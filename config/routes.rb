@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'gossips#index'
-  
-  get 'gossips/:id', to: 'gossips#show'
+
+  get 'gossips/:id', to: 'gossips#show', as: 'gossip'
   get 'welcomes/:first_name', to: 'welcomes#index'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
