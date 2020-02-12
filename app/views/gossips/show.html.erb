@@ -10,5 +10,6 @@
     <p class="card-text"><%= link_to "#{@gossip.user.first_name + " " + @gossip.user.last_name.upcase}", user_path(@gossip.user)%></p>
     <h5 class="card-title">City:</h5>
     <p class="card-text"><%= @gossip.user.city.name %></p> 
+    <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small>
   </div>
 </div>
