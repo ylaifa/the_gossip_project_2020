@@ -8,6 +8,7 @@ class GossipsController < ApplicationController
   end
 
   def new
+    @gossip = Gossip.new
   end
 
   def create 
