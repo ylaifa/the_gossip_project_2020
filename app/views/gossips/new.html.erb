@@ -1,0 +1,11 @@
+<%= form_tag gossips_path do %>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Title : 
+            <%= text_field_tag :title, @gossip.title %>
+            <h5 class="card-title">Content : 
+            <%= text_field_tag :content, @gossip.content %>
+            <p><%= submit_tag 'New Gossip' %></p> 
+        </div>
+    </div>
+<% end %>
