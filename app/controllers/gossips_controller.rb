@@ -14,10 +14,10 @@ class GossipsController < ApplicationController
   def create 
     @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.first) 
     if @gossip.save
-      flash[:success] = "Woohoo!"
+      flash[:notice] = 'New gossip created!'
       redirect_to root_path
     else
-      flash[:alert] = "Alerting you to the monkey on your car!"
+      flash[:alert] = @gossip.errors.full_messages
       render 'new'
     end
   end
