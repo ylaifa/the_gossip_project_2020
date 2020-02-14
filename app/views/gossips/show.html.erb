@@ -10,6 +10,7 @@
     <p class="card-text"><%= link_to "#{@gossip.user.first_name + " " + @gossip.user.last_name.upcase}", user_path(@gossip.user)%></p>
     <h5 class="card-title">City:</h5>
     <p class="card-text"><%= link_to "#{@gossip.user.city.name}", city_path(@gossip.user.city)%></p> 
-    <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small>
+    <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small><br/>
+    <%= link_to 'Destroy', gossip_path(@gossip), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>
