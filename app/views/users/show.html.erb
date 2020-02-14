@@ -13,6 +13,6 @@
         <h5 class="card-title">Age:</h5>
         <p class="card-text"><%= @user.age %></p>  
         <h5 class="card-title">City:</h5>
-        <p class="card-text"><%= @user.city.name %></p>
+        <p class="card-text"><%= link_to "#{@user.city.name}", city_path(@user.city)%></p>
       </div>
     </div>
