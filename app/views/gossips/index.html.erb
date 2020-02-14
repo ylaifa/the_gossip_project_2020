@@ -12,6 +12,7 @@
                     <p><%= gossip.content %></p>
                     <footer class="blockquote-footer">
                         <small>Author : <cite title="Source Title"><%= gossip.user.first_name %></cite></small><br/>
+                        <small>Number of comments : <%= gossip.comments.count %></cite></small><br/>
                         <small><cite title="Source Title"><%= gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small>
                         <p><%= link_to "Show Gossip", gossip_path(gossip), class: "btn btn-outline-secondary btn-block" %></p>
                     </footer>

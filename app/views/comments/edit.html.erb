@@ -1,2 +1,12 @@
-<h1>Comments#edit</h1>
-<p>Find me in app/views/comments/edit.html.erb</p>
+<h3 class="card-title text-center">Edit Comment :
+<%= form_with url: gossip_comment_path, method: :put do |f| %>
+    <div class="card border-light text-center">
+        <div class="card-body">
+            <%= f.text_field :content, placeholder: @comment.content, class: "form-control"%><br/>
+            <p>
+                <%= f.submit 'Edit', class: "btn btn-secondary btn-sm" %>
+                <%= link_to 'Destroy', gossip_comment_path(gossip_id: @comment.gossip, id: @comment), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </p> 
+        </div>
+    </div>
+<% end %>

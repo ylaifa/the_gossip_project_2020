@@ -1,11 +1,11 @@
 <%= form_with model: @gossip do |f| %>
     <div class="card text-center">
         <div class="card-body">
-            <h5 class="card-title">Title : 
-            <%= f.text_field :title %>
-            <h5 class="card-title">Content : 
-            <%= f.text_field :content%>
-            <p><%= f.submit 'Edit Gossip' %></p> 
+            <h3 class="card-title">Title : 
+            <%= f.text_field :title, class: "form-control" %>
+            <h3 class="card-title">Content : 
+            <%= f.text_field :content, class: "form-control"%>
+            <p><%= f.submit 'Edit Gossip', class: "btn btn-secondary" %></p> 
         </div>
     </div>
 <% end %>
