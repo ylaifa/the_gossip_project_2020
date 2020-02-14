@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'gossips#index'
 
   resources :gossips
+
   resources :cities, only: [:index, :show]
     
   get 'users/:id', to: 'users#show', as: 'user'
