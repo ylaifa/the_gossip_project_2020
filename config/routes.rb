@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'gossips#index'
 
-  resources :gossips
+  resources :gossips do
+    resources :comments
+  end
 
   resources :cities, only: [:index, :show]
     
