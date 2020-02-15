@@ -1,6 +1,5 @@
-<h1>Gossip <%= params[:id] %></h1>
-
-<div class="card w-50">
+<h2 class="text-center">GOSSIP <%= params[:id] %></h2><br/>
+<div class="card w-100">
   <div class="card-body">
     <h3 class="card-title">Title : 
     <%= @gossip.title %></h3>
@@ -9,7 +8,33 @@
     <h5 class="card-title">Author:</h5>
     <p class="card-text"><%= link_to "#{@gossip.user.first_name + " " + @gossip.user.last_name.upcase}", user_path(@gossip.user)%></p>
     <h5 class="card-title">City:</h5>
-    <p class="card-text"><%= @gossip.user.city.name %></p> 
-    <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small>
+    <p class="card-text"><%= link_to "#{@gossip.user.city.name}", city_path(@gossip.user.city)%></p> 
+    <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small><br/>
+    <%= link_to 'Destroy', gossip_path(@gossip), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
-</div>
+</div><br/>
+<h2 class="text-center">Comments</h2><br/>
+<%= form_with url: gossip_comments_path(gossip_id: params[:id]), method: :post do |f| %>
+    <div class="card border-light text-center">
+        <div class="card-body">
+            <%= f.text_field :content, placeholder: "Add a comment", class: "form-control"%><br/>
+            <p><%= f.submit 'Post', class: "btn btn-secondary" %></p> 
+        </div>
+    </div>
+<% end %>
+<% @gossip.comments.sort_by(&:created_at).reverse.each do |comment|%>
+        <div class="card w-100">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                <p><%= comment.content %></p>
+                <footer class="blockquote-footer">
+                    <small>Author : <cite title="Source Title"><%= comment.user.first_name %></cite></small><br/>
+                </footer>
+                </blockquote><br/>
+                <%= link_to 'Edit comment', edit_gossip_comment_path(@gossip, comment) %>
+            </div>
+        </div>
+<% end %>
+
+
+
