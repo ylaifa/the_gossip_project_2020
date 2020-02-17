@@ -16,8 +16,10 @@
         <% end %><br/>
     <% end %>
     <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small><br/>
-    <%= link_to 'Edit', edit_gossip_path(@gossip), class: "btn btn-secondary btn-sm" %>
-    <%= link_to 'Destroy', gossip_path(@gossip), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if current_user == @gossip.user %>
+        <%= link_to 'Edit', edit_gossip_path(@gossip), class: "btn btn-secondary btn-sm" %>
+        <%= link_to 'Destroy', gossip_path(@gossip), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   </div>
 </div><br/>
 <h2 class="text-center">Comments</h2><br/>
@@ -38,7 +40,9 @@
                     <small>Author : <cite title="Source Title"><%= comment.user.first_name %></cite></small><br/>
                 </footer>
                 </blockquote><br/>
-                <%= link_to 'Edit comment', edit_gossip_comment_path(@gossip, comment) %>
+                <% if current_user == @gossip.user %>
+                    <%= link_to 'Edit comment', edit_gossip_comment_path(@gossip, comment) %>
+                <% end %>
             </div>
         </div>
 <% end %>

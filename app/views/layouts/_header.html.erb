@@ -16,7 +16,8 @@
             </li>
         </ul>
     </div> 
-    <% if current_user %>    
+    <% if current_user %>  
+        <%= link_to "New Gossip", new_gossip_path, class: "btn btn-secondary" %>  
         <%= link_to "Log Out", session_path(session.id), method: :delete, class: "btn btn-outline-secondary space_left_button" %>
     <% else %>
         <%= link_to "Sign Up", new_user_path, class: "btn btn-outline-secondary space_left_button" %>
