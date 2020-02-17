@@ -1,4 +1,7 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
     @gossips = Gossip.includes(:user).all
   end
@@ -12,7 +15,8 @@ class GossipsController < ApplicationController
   end
 
   def create 
-    @gossip = Gossip.new(gossip_params.merge(user: User.first)) 
+    @gossip = Gossip.new(gossip_params) 
+    @gossip.user = current_user
     @gossip.tags << Tag.find(params[:tags_id])
     if @gossip.save
       flash[:notice] = 'New gossip created !'
@@ -30,7 +34,7 @@ class GossipsController < ApplicationController
   def update
     @gossip = Gossip.find(params[:id])
     @gossip.tags << Tag.find(params[:tags_id])
-    if @gossip.update(gossip_params.merge(user: User.first))
+    if @gossip.update(gossip_params)
       flash[:notice] = 'gossip updated !'
       redirect_to @gossip
     else
@@ -49,5 +53,10 @@ class GossipsController < ApplicationController
   private
     def gossip_params
       params.require(:gossip).permit(:title, :content, :tag_ids => [])
+    end
+
+    def correct_user
+      gossip = Gossip.find(params[:id])
+      redirect_to root_path unless current_user == gossip.user
     end
 end

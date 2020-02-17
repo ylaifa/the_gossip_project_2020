@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-
+  
   root 'gossips#index'
 
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
   resources :gossips do
     resources :comments
   end
 
   resources :cities, only: [:index, :show]
     
-  get 'users/:id', to: 'users#show', as: 'user'
   get 'welcomes/:first_name', to: 'welcomes#index'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
