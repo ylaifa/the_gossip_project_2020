@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
+  
   root 'gossips#index'
 
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :gossips do
     resources :comments
