@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     end
     @user = User.new(user_params.merge(city: @city)) 
     if @user.save
+      log_in(@user)
       flash[:notice] = "Welcome !"
       redirect_to root_path
     else
