@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
       redirect_to gossip_path(@comment.gossip)
     else
       flash[:alert] = @comment.errors.full_messages
-      render edit_gossip_comment(gossip_id: @comment.gossip, id: @comment)
+      render edit_gossip_comment_path(gossip_id: @comment.gossip, id: @comment)
     end
   end
 

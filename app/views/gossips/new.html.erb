@@ -1,14 +1,16 @@
+<h1>New Gossip</h1>
+
 <%= form_with model: @gossip do |f| %>
-    <div class="card text-center">
-        <div class="card-body">
-            <h5 class="card-title">Title :</h5>
-            <%= f.text_field :title %>
-            <h5 class="card-title">Content :</h5> 
-            <%= f.text_field :content%>
-            <h5 class="card-title">Tags :</h5>
-            <%= select_tag :tags_id, options_from_collection_for_select(Tag.all, "id", "title"), class: "checkbox", multiple: true, size: 5, include_blank: 'Choose tag' %>
-            <p><%= f.submit 'New Gossip' %></p> 
+    <form>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+            <%= f.label :content %>
+            <%= f.text_field :content, class: 'form-control'%><br/>
+            <%= f.label :tags %>
+            <%= select_tag :tags_id, options_from_collection_for_select(Tag.all, "id", "title"), include_blank: 'Choose tag' %><br/>
+            <p><%= f.submit 'New Gossip', class: "btn btn-secondary" %></p> 
         </div>
-    </div>
+    </form>
 <% end %>
 

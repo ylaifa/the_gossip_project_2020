@@ -12,11 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @city = City.find_by(name: params[:city])
-    if @city == nil
-      @city = City.create(name: params[:city])
-    end
-    @user = User.new(user_params.merge(city: @city)) 
+    @user = User.new(user_params.merge(city: City.all.sample))
     if @user.save
       log_in(@user)
       flash[:notice] = "Welcome !"

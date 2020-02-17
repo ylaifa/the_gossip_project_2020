@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "Welcome ! "
       redirect_to root_path
-  
     else
       flash.now[:alert] = 'Invalid email/password combination'
       render 'new'
@@ -21,6 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
+    flash[:notice] = "You are logout."
     redirect_to root_path
   end
 end

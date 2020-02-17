@@ -1,24 +1,24 @@
+<h1>Create account :</h1>
+
 <%= form_with model: @user do |f| %>
-    <div class="card text-center">
-        <div class="card-body">
-            <h5 class="card-title">First name : 
-            <%= f.text_field :first_name %>
-            <h5 class="card-title">Last name : 
-            <%= f.text_field :last_name%>
-            <h5 class="card-title">Age : 
-            <%= f.text_field :age%>
-            <h5 class="card-title">Description : 
-            <%= f.text_field :description %>
-            <h5 class="card-title">Email : 
-            <%= f.text_field :email%>
-            <h5 class="card-title">City : 
-            <%= f.text_field :city%>
-            <h5 class="card-title">Password : 
-            <%= f.text_field :password%>
-            <h5 class="card-title">Password confirmation : 
-            <%= f.text_field :password_confirmation%>
-            <p><%= f.submit 'Create account' %></p> 
+    <form>
+        <div class="form-group">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: 'form-control' %>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+            <%= f.label :Age %>
+            <%= f.text_field :age, class: 'form-control' %>
+            <%= f.label :description %>
+            <%= f.text_field :description, class: 'form-control' %>
+            <%= f.label :email %>
+            <%= f.text_field :email, class: 'form-control' %>
+            <%= f.label :password %> 
+            <%= f.text_field :password, class: 'form-control' %>
+            <%= f.label :password_confirmation %>
+            <%= f.text_field :password_confirmation, class: 'form-control' %>
+            <p><%= f.submit 'Create account', class: "btn btn-secondary" %></p> 
         </div>
-    </div>
+   </form>
 <% end %>
 

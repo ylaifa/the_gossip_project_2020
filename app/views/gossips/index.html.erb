@@ -1,6 +1,5 @@
 <!-- Vue de la page d'accueil de l'appication -->
 <h2>HI <%= params[:id] %> ! Welcome to the Gossips Center :</h2>
-<p><%= link_to "New Gossip", new_gossip_path, class: "btn btn-secondary btn-block" %></p>
 <!-- Boucle qui parcours tous les gossips -->
 <div class="row">
     <% @gossips.sort_by(&:created_at).reverse.each do |gossip|%>
