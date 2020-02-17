@@ -17,6 +17,7 @@ class GossipsController < ApplicationController
   def create 
     @gossip = Gossip.new(gossip_params) 
     @gossip.user = current_user
+    @gossip.tags << Tag.find(params[:tags_id])
     if @gossip.save
       flash[:notice] = 'New gossip created !'
       redirect_to root_path
@@ -32,6 +33,7 @@ class GossipsController < ApplicationController
 
   def update
     @gossip = Gossip.find(params[:id])
+    @gossip.tags << Tag.find(params[:tags_id])
     if @gossip.update(gossip_params)
       flash[:notice] = 'gossip updated !'
       redirect_to @gossip
@@ -50,7 +52,7 @@ class GossipsController < ApplicationController
 
   private
     def gossip_params
-      params.require(:gossip).permit(:title, :content)
+      params.require(:gossip).permit(:title, :content, :tag_ids => [])
     end
 
     def correct_user

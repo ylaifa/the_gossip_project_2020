@@ -2,21 +2,28 @@
 
 <div class="row">
     <% @city.users.each do |user_city|%>
-        <% user_city.gossips.each do |gossip|%>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-text"><%= gossip.title %></h5>
-                        <blockquote class="blockquote mb-0">
-                        <p><%= gossip.content %></p>
-                        <footer class="blockquote-footer">
-                            <small>Author : <cite title="Source Title"><%= gossip.user.first_name %></cite></small>
-                            <p><%= link_to "Show Gossip", gossip_path(gossip), class: "btn btn-outline-secondary btn-block" %></p>
-                        </footer>
-                        </blockquote>
-                    </div>
+        <% user_city.gossips.sort_by(&:created_at).reverse.each do |gossip|%>
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-text"><%= gossip.title %></h5>
+                    <blockquote class="blockquote mb-0">
+                    <p><%= gossip.content %></p>
+                    <footer class="blockquote-footer">
+                        <small>Author : <cite title="Source Title"><%= gossip.user.first_name %></cite></small><br/>
+                         <% if !gossip.tags.empty? %>
+                           <cite>Tags:</cite>
+                            <% gossip.tags.each do |tag| %>
+                                <span class="badge badge-info"><%= tag.title %></span>
+                            <% end %>
+                        <% end %><br/>
+                        <small>Number of comments : <%= gossip.comments.count %></small><br/>
+                        <small><cite title="Source Title"><%= gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small>
+                        <p><%= link_to "Show Gossip", gossip_path(gossip), class: "btn btn-outline-secondary btn-block" %></p>
+                    </footer>
+                    </blockquote>
                 </div>
             </div>
         <% end %>    
     <% end %>
 </div>
+

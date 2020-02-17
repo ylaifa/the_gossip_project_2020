@@ -9,7 +9,14 @@
     <p class="card-text"><%= link_to "#{@gossip.user.first_name + " " + @gossip.user.last_name.upcase}", user_path(@gossip.user)%></p>
     <h5 class="card-title">City:</h5>
     <p class="card-text"><%= link_to "#{@gossip.user.city.name}", city_path(@gossip.user.city)%></p> 
+    <% if !@gossip.tags.empty? %>
+        <h5 class="card-title">Tags:</h5>
+        <% @gossip.tags.each do |tag| %>
+            <span class="badge badge-info"><%= tag.title %></span>
+        <% end %><br/>
+    <% end %>
     <small><cite title="Source Title"><%= @gossip.created_at.strftime("Created : %m/%d/%Y at %I:%M %p") %></cite></small><br/>
+    <%= link_to 'Edit', edit_gossip_path(@gossip), class: "btn btn-secondary btn-sm" %>
     <%= link_to 'Destroy', gossip_path(@gossip), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div><br/>

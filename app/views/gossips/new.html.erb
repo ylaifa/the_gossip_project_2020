@@ -1,10 +1,12 @@
 <%= form_with model: @gossip do |f| %>
     <div class="card text-center">
         <div class="card-body">
-            <h5 class="card-title">Title : 
+            <h5 class="card-title">Title :</h5>
             <%= f.text_field :title %>
-            <h5 class="card-title">Content : 
+            <h5 class="card-title">Content :</h5> 
             <%= f.text_field :content%>
+            <h5 class="card-title">Tags :</h5>
+            <%= select_tag :tags_id, options_from_collection_for_select(Tag.all, "id", "title"), class: "checkbox", multiple: true, size: 5, include_blank: 'Choose tag' %>
             <p><%= f.submit 'New Gossip' %></p> 
         </div>
     </div>

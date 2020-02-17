@@ -5,6 +5,13 @@
             <%= f.text_field :title, class: "form-control" %>
             <h3 class="card-title">Content : 
             <%= f.text_field :content, class: "form-control"%>
+            <% if !@gossip.tags.empty? %>
+                <h5 class="card-title">Tags:</h5>
+                <% @gossip.tags.each do |tag| %>
+                    <span class="badge badge-info"><%= tag.title %></span>
+                <% end %><br/>
+            <% end %>
+            <%= select_tag :tags_id, options_from_collection_for_select(Tag.all, "id", "title"), class: "checkbox", multiple: true, classe: 'selected-select', include_blank: 'Choose tag' %>
             <p><%= f.submit 'Edit Gossip', class: "btn btn-secondary" %></p> 
         </div>
     </div>
