@@ -25,7 +25,7 @@ end
 end
 
 20.times do
-  Gossip.create(title: Faker::TvShows::SouthPark.character, content: Faker::TvShows::SouthPark.quote, user: User.all.sample)
+  Gossip.create(title: Faker::Book.title, content: Faker::TvShows::SouthPark.quote, user: User.all.sample)
 end
 
 10.times do
